@@ -40,8 +40,14 @@ namespace User_Management_System_Innocent
             {
                 try
                 {
+                 SqlCommand com = new SqlCommand("SELECT Password FROM Customer WHERE Username ='"+usernameT.Text+"" , con);
                     con.Open();
+                       dr = com.ExecuteReader();
 
+                    while(dr.Read())
+                    {
+                        MessageBox.Show("Your password is: " + dr["Password"].ToString());
+                    }
 
 
                     con.Close();
