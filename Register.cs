@@ -13,7 +13,7 @@ namespace User_Management_System_Innocent
 {
     public partial class Register : Form
     {
-        SqlConnection con = new SqlConnection();
+        SqlConnection con = new SqlConnection("Data Source=sqlserver.dynamicdna.co.za;Initial Catalog=User-Management-System-Innocent;User ID=BBD;Password=");
         public Register()
         {
             InitializeComponent();
@@ -25,9 +25,26 @@ namespace User_Management_System_Innocent
             {
                 try
                 {
+           
                     con.Open();
 
+                    SqlCommand com = new SqlCommand("INSERT INTO Customer VALUES('"+fnamesT.Text+"','"+usernameT.Text+"','"+passwordT.Text+"')", con);
+                    try
+                    {
+                        com.ExecuteNonQuery();
+                        MessageBox.Show("Congratulation you have registered");
 
+                        fnamesT.Clear();
+                        usernameT.Clear();
+                        passwordT.Clear();
+
+                        fnamesT.Focus();
+                    }
+                    catch (Exception)
+                    {
+
+                        MessageBox.Show("Failed to register please contact the system admin");
+                    }
                     con.Close();
 
 
