@@ -26,11 +26,11 @@ namespace User_Management_System_Innocent
             {
                 try
                 {
-                 SqlCommand com = new SqlCommand("SELECT Username,Password FROM Customer WHERE Username ='"+usernameT.Text+"'AND Password = '"+passwordT.Text+"'", con);
+                 
 
                 
                     con.Open();
-                     
+                     SqlCommand com = new SqlCommand("SELECT Username,Password FROM Customer WHERE Username ='"+usernameT.Text+"'AND Password = '"+passwordT.Text+"'", con);
                     dr = com.ExecuteReader();
 
                     while (dr.Read())
