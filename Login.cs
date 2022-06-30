@@ -13,7 +13,8 @@ namespace User_Management_System_Innocent
 {
     public partial class Login : Form
     {
-        SqlConnection con = new SqlConnection("");
+        SqlDataReader dr;
+        SqlConnection con = new SqlConnection("Data Source=sqlserver.dynamicdna.co.za;Initial Catalog=User-Management-System-Innocent;User ID=BBD;Password=");
         public Login()
         {
             InitializeComponent();
@@ -25,7 +26,19 @@ namespace User_Management_System_Innocent
             {
                 try
                 {
+                 SqlCommand com = new SqlCommand("SELECT Username,Password FROM Customer WHERE Username ='"+usernameT.Text+"'AND Password = '"+passwordT.Text+"'", con);
+
+                
                     con.Open();
+                     
+                    dr = com.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        Menu mn = new Menu();
+                        mn.Show();
+                        this.Hide();
+                    }
 
 
 
